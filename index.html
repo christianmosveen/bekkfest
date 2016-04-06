@@ -5,11 +5,25 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="js/app.bekk.beacon.js"></script>
   <script src="js/processing.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.3.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
   <script src="js/data.js"></script>
 </head>
 <body>
 
 <canvas id="heatmap" data-processing-sources="bekk.beacon.pde"></canvas>
+
+<script>
+$(document).ready(function() {
+	setTimeout(init, 1000);
+});
+
+var beaconData = [];
+function setBeaconData(data) {
+	console.log(data);
+	beaconData = data.Items.slice(Math.max(data.Items.length - 10, 1))
+}
+</script>
 
 </body>
 </html>
