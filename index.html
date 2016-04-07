@@ -23,6 +23,24 @@ function setBeaconData(data) {
 	console.log(data);
 	beaconData = data.Items.slice(Math.max(data.Items.length - 10, 1))
 }
+
+
+function mockData() {
+	beaconData.push({
+		_Id: '42573645',
+		beaconId: choose(['1111', '2222', '3333', '4444', '5555']),
+		dist: Math.random()*40,
+		timestamp: (new Date()).getTime()
+	})
+	if (beaconData.length > 100) beaconData.splice(0, 1);
+}
+
+function choose(choices) {
+  	var index = Math.floor(Math.random() * choices.length);
+	return choices[index];
+}
+
+setInterval(mockData, 10);
 </script>
 
 </body>
