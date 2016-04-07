@@ -4,15 +4,16 @@ HashMap<String,Coord> beaconCoords = new HashMap<String,Coord>();
 void setup(){
   size(ww,wh);
   background(20,19,20);
+  console.log(width + " x " + height);
 
   // Koordinater (130,50)(1150,460)
   kart = loadShape("img/bekk_beacon_kart.svg");
 
-  Coord resepsjonen = new Coord(190,250);
-  Coord youngstorget = new Coord(640,265);
-  Coord kantina = new Coord(310,390);
-  Coord fotorommet = new Coord(1110, 220);
-  Coord fussball = new Coord(520, 440);
+  Coord resepsjonen = new Coord(width/6.74,height/2.8);
+  Coord youngstorget = new Coord(width/2,height/2.65);
+  Coord kantina = new Coord(width/4.13,height/1.8);
+  Coord fotorommet = new Coord(width/1.15, height/3.19);
+  Coord fussball = new Coord(width/2.46, height/1.59);
 
   beaconCoords.put("1111", resepsjonen);
   beaconCoords.put("2222", youngstorget);
