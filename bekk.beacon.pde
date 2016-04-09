@@ -14,12 +14,14 @@ void setup(){
   Coord kantina = new Coord(width/4.13,height/1.8);
   Coord fotorommet = new Coord(width/1.15, height/3.19);
   Coord fussball = new Coord(width/2.46, height/1.59);
+  Coord chillout = new Coord(width/1.55, height/2.75);
 
   beaconCoords.put("1111", resepsjonen);
   beaconCoords.put("2222", youngstorget);
   beaconCoords.put("3333", kantina);
   beaconCoords.put("4444", fotorommet);
   beaconCoords.put("5555", fussball);
+  beaconCoords.put("6666", chillout);
 }
 
 void draw(){
@@ -42,14 +44,14 @@ class Beacon {
 
   Beacon(_beaconId, _dist, _timestamp) {
     beaconId = _beaconId;
-    radius = _dist*3;
+    radius = _dist*15;
     coord = beaconCoords.get(beaconId);
   }
 
   void display() {
     if (coord) {
       noStroke();
-      fill(253, 80, 88, 100);
+      fill(253, 80, 88, 20);
       ellipse(coord.x, coord.y, radius, radius);
       fill(255);
       textSize(20);

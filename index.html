@@ -18,21 +18,47 @@ $(document).ready(function() {
 	setTimeout(init, 1000);
 });
 
+// Set this to false to get data from the dynamoDB
+var demoMode = true;
+var lastMessage = new Date();
+
 var beaconData = [];
 function setBeaconData(data) {
 	console.log(data);
-	beaconData = data.Items.slice(Math.max(data.Items.length - 10, 1))
+	beaconData = data.Items.slice(Math.max(data.Items.length - 100, 1))
+
+	sendMessage();
 }
 
+function sendMessage() {
+	var secondsSinceLast = (new Date() - lastMessage) / 1000;
+	
+	if (secondsSinceLast > 60) {
+		var result = beaconData.filter(function (obj) {
+	  		return obj.beaconId == "5555";
+		});
+
+		if (result.length > 7) {
+			$.post(slackWebhookUrl, JSON.stringify(
+				{"text": "The game is on in the fussball room!", 
+				"username": "bekkfest", 
+				"icon_emoji": ":tada:"})
+			);
+			lastMessage = new Date();
+		}
+	}
+}
 
 function mockData() {
 	beaconData.push({
 		_Id: '42573645',
-		beaconId: choose(['1111', '2222', '3333', '4444', '5555']),
-		dist: Math.random()*40,
+		beaconId: choose(['1111', '2222', '3333', '4444', '5555', '6666']),
+		dist: Math.random() * 10,
 		timestamp: (new Date()).getTime()
 	})
-	if (beaconData.length > 100) beaconData.splice(0, 1);
+	if (beaconData.length > 30) beaconData.splice(0, 1);
+
+	sendMessage();
 }
 
 function choose(choices) {
@@ -40,7 +66,7 @@ function choose(choices) {
 	return choices[index];
 }
 
-setInterval(mockData, 10);
+if (demoMode) setInterval(mockData, 200);
 </script>
 
 </body>

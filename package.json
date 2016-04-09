@@ -4,14 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "ext": "babel-node main.js"
+    "ext": "babel-node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.13.4",
-    "firebase": "2.3.1",
-    "johnny-five": "0.9.19"
+    "express": "4.13.4"
   },
   "devDependencies": {
     "babel-core": "6.5.1",

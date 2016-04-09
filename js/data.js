@@ -1,5 +1,5 @@
 var init = function() {
-	AWS.config.update({accessKeyId: 'X', secretAccessKey: 'Y'});
+	AWS.config.update({accessKeyId: dynamoAccessKeyId, secretAccessKey: dynamoSecretAccessKey});
 	AWS.config.region = 'us-east-1';
 
 	//var heatmapViz = Processing.getInstanceById("heatmap");
@@ -26,6 +26,6 @@ var init = function() {
 		})
 	};
 
-	//setInterval(loadData, 10000);
+	if (!demoMode) setInterval(loadData, 10000);
 	
 };
