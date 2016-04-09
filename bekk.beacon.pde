@@ -6,7 +6,6 @@ void setup(){
   background(20,19,20);
   console.log(width + " x " + height);
 
-  // Koordinater (130,50)(1150,460)
   kart = loadShape("img/bekk_beacon_kart.svg");
 
   Coord resepsjonen = new Coord(width/6.74,height/2.8);
@@ -53,9 +52,6 @@ class Beacon {
       noStroke();
       fill(253, 80, 88, 20);
       ellipse(coord.x, coord.y, radius, radius);
-      fill(255);
-      textSize(20);
-      //text(beaconId, coord.x-20, coord.y+8);  
     }
   }
 }
