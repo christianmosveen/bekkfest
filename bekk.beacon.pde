@@ -14,6 +14,7 @@ void setup(){
   Coord fotorommet = new Coord(width/1.15, height/3.19);
   Coord fussball = new Coord(width/2.46, height/1.59);
   Coord chillout = new Coord(width/1.55, height/2.75);
+  Coord retrogaming = new Coord(width/7.5, height/1.8);
 
   beaconCoords.put("1111", resepsjonen);
   beaconCoords.put("2222", youngstorget);
@@ -21,6 +22,7 @@ void setup(){
   beaconCoords.put("4444", fotorommet);
   beaconCoords.put("5555", fussball);
   beaconCoords.put("6666", chillout);
+  beaconCoords.put("7777", retrogaming);
 }
 
 void draw(){

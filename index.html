@@ -52,13 +52,13 @@ function sendMessage() {
 function mockData() {
 	beaconData.push({
 		_Id: '42573645',
-		beaconId: choose(['1111', '2222', '3333', '4444', '5555', '6666']),
+		beaconId: choose(['1111', '2222', '3333', '4444', '5555', '6666', '7777']),
 		dist: Math.random() * 10,
 		timestamp: (new Date()).getTime()
 	})
 	if (beaconData.length > 30) beaconData.splice(0, 1);
 
-	sendMessage();
+	//sendMessage();
 }
 
 function choose(choices) {
