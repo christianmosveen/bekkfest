@@ -1,10 +1,10 @@
 PShape kart;
 HashMap<String,Coord> beaconCoords = new HashMap<String,Coord>();
+beaconShape bs;
 
 void setup(){
   size(ww,wh);
   background(20,19,20);
-  console.log(width + " x " + height);
 
   kart = loadShape("img/bekk_beacon_kart.svg");
 
@@ -26,36 +26,76 @@ void setup(){
 }
 
 void draw(){
-  background(20,19,20);
-  shape(kart, width/10, (height/2)-(kart.height/1.5), width-(width/5), 0);
+   background(20);
+   shape(kart, width/10, (height/2)-(kart.height/1.5), width-(width/5), 0);
 
-  if (beaconData) {
     for (int i = 0; i < beaconData.length; i++) {
       Beacon b = new Beacon(beaconData[i].beaconId, beaconData[i].dist, beaconData[i].timestamp)
       b.display();
     }
-  }
+
 }
 
 class Beacon {
   int radius;
   String beaconId;
-  long timestamp;
   Coord coord;
+  int timestamp;
 
   Beacon(_beaconId, _dist, _timestamp) {
     beaconId = _beaconId;
-    radius = _dist*25;
+    radius = _dist*pow(2,2.3);
     coord = beaconCoords.get(beaconId);
+    timestamp = _timestamp;
   }
 
   void display() {
-    if (coord) {
-      noStroke();
-      fill(253, 80, 88, 20);
-      ellipse(coord.x, coord.y, radius, radius);
+      //noFill();
+      if(radius < 150){
+        noStroke();
+        fill(255,255,255,40);
+      } else {
+        noFill();
+        stroke(255,255,255,50);
+      }
+      bs = new beaconShape(new PVector(coord.x, coord.y), radius);
+      bs.build();
+      bs.display();
+  }
+}
+
+class beaconShape {
+  PVector center = new PVector();
+  PVector[] points;
+  int size;
+  int randomSize = [-7,45,12,6,17,-4,11,-4,17,-18];
+
+  beaconShape(PVector start, _size) {
+    size = _size;
+    center.set(start);
+  }
+
+  void build() {
+    int numberOfCorners = int(3+(size/30));
+    //println(numberOfCorners);
+    float t = 360/numberOfCorners;
+    points = new PVector[numberOfCorners];
+    float rotation = size;
+    for (int i = 0; i < numberOfCorners; i++) {
+      float xcorner = center.x + sin((radians(i * t)+rotation)) * (size + randomSize[i]);
+      float ycorner = center.y + cos((radians(i * t)+rotation)) * (size + randomSize[i]);
+      points[i] = new PVector(xcorner, ycorner);
     }
   }
+
+  void display() {
+    beginShape();
+    for (int i = 0; i < points.length; i++) {
+      vertex(points[i].x, points[i].y);
+    }
+    endShape(CLOSE);
+  }
+
 }
 
 class Coord {
@@ -65,4 +105,9 @@ class Coord {
     x = _x;
     y = _y;
   }
+}
+
+void randomish(_input) {
+  int output = int(_input / 20);
+  return output;
 }
