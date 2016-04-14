@@ -45,7 +45,7 @@ class Beacon {
 
   Beacon(_beaconId, _dist, _timestamp) {
     beaconId = _beaconId;
-    radius = _dist*15;
+    radius = _dist*25;
     coord = beaconCoords.get(beaconId);
   }
 

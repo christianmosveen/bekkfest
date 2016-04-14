@@ -7,14 +7,17 @@ var init = function() {
 	var dynamodb = new AWS.DynamoDB.DocumentClient();
 
 	var params = {
-		TableName: "HeatMap"/*,
-		KeyConditionExpression: "beaconId = :beaconId",
-	    ExpressionAttributeNames:{
-	        "#yr": "year"
-	    },
-	    ExpressionAttributeValues: {
-	        ":yyyy":1985
-	    }*/
+		TableName: "HeatMap",
+		IndexName: "dummy-timestamp-index",
+    	KeyConditions: {
+	        Status: {
+	            ComparisonOperator: "EQ", 
+	            AttributeValueList: [ 
+	                "ok"
+	            ]
+	        }
+    	},
+    	ScanIndexForward: false
 	};
 
 	var loadData = function () {

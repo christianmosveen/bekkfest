@@ -25,9 +25,9 @@ var lastMessage = new Date();
 var beaconData = [];
 function setBeaconData(data) {
 	console.log(data);
-	beaconData = data.Items.slice(Math.max(data.Items.length - 100, 1))
+	beaconData = data.Items.slice(Math.max(data.Items.length - 100, 1));
 
-	sendMessage();
+	//sendMessage();
 }
 
 function sendMessage() {
