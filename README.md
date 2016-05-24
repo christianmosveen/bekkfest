@@ -2,5 +2,5 @@
 
 ## Usage
 ```
-npm app.js
+node app.js
 ```
